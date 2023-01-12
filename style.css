@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap');
+
+* {
+    padding: 0; margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh; width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #800000;
+}
+
+.current {
+    display: flex;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: .2rem;
+    transition: .3s ease;
+}
+.current.x{
+    color: #fff;
+    padding-right: 3rem;
+    position: relative;
+}
+.current.x::before, .current.x::after{
+    content: '';
+    height: .4rem; width: 1.8rem;
+    background-color: #000;
+    position: absolute;
+    top: 50%; right: 80px;
+    transition: .3s ease;
+}
+.current.x::before{
+    transform: rotate(45deg);
+}
+.current.x::after{
+    transform: rotate(-45deg);
+}
+
+.current.circle{
+    color: #000;
+    padding-right: 3rem;
+    position: relative;
+}
+.current.circle::before{
+    content: '';
+    height: 1rem; width: 1rem;
+    position: absolute;
+    border: .3rem solid #fff;
+    border-radius: 50%;
+    top: 50%; right: 80px;
+    transform: translateY(-50%);
+    transition: .3s ease;
+}
+
+.container {
+    width: 300px; height: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: relative;
+    transition: .3s ease;
+}
+.container .field {
+    border: .3rem solid #600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.field:nth-child(1), .field:nth-child(2), .field:nth-child(3){
+    border-top: none;
+}
+.field:nth-child(3), .field:nth-child(6), .field:nth-child(9){
+    border-right: none;
+}
+.field:nth-child(9), .field:nth-child(8), .field:nth-child(7){
+    border-bottom: none;
+}
+.field:nth-child(7), .field:nth-child(4), .field:nth-child(1){
+    border-left: none;
+}
+
+/* X and Circle */
+.field.circle::before{
+    content: '';
+    position: absolute;
+    height: 60px; width: 60px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    animation: circle .3s ease;
+}
+
+@keyframes circle{
+    from{
+        width: 0px; height: 0px;
+    } to{
+        width: 60px; height: 60px;
+    }
+}
+
+.field.x::before, .field.x::after{
+    content: '';
+    position: absolute;
+    height: calc(100px * .15); width: calc(100px * .9);
+    background-color: #000;
+    animation: x .3s ease;
+}
+.field.x::before{
+    transform: rotate(45deg);
+}
+.field.x::after{
+    transform: rotate(-45deg);
+}
+
+@keyframes x {
+    from{
+        width: 0px;
+        height: 0px;
+    } to{
+        width: 90px;
+        height: 15px;
+    }
+}
+
+.field.x, .field.circle {
+    cursor: not-allowed;
+}
+
+/* Winning message */
+.endgame{
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    visibility: hidden;
+}
+.endgame button{
+    border: none;
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    padding: .3rem 2rem;
+    width: max-content;
+    margin: auto;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.endgame button:hover{
+    background-color: #111;
+}
