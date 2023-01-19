@@ -30,27 +30,23 @@ function checkForWin(currentPlayer) {
     })
 }
 function checkForDraw() {
-    return [...fields].every(field => {
-        return field.classList.contains('x') || field.classList.contains('circle')
-    })
+    return [...fields].every(field => field.classList.contains('x') || field.classList.contains('circle'))
 }
 
 function startGame() {
-    fields.forEach(field => {
-        field.className = 'field'
-    })
+    fields.forEach(field => field.className = 'field')
     endgameContainer.style.visibility = 'hidden'
     game = true
 }
 
 function endgame(draw = false) {
-    if(draw === false) {
+    if(!draw) {
         if(current === 'x'){
             endgameMessage.innerText = 'X Venceu!'
         } else if(current === 'circle') {
             endgameMessage.innerText = 'Bolinha venceu!'
         }
-    } else if (draw === true){
+    } else if (draw){
         endgameMessage.innerText = 'Empate!'
     }
     game = false
@@ -68,11 +64,11 @@ fields.forEach(field => {
             if(checkForWin(current)){
                 endgame(false)
 
-                // Verificar empate
+            // Verificar empate
             } else if (checkForDraw()) {
                 endgame(true)
 
-                // Mudar jogador
+            // Mudar jogador
             } else {
                 if (current === 'x') {
                     current = 'circle'
